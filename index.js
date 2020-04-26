@@ -29,9 +29,11 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
     try {
-        const url =
-            "mongodb+srv://memet:12345@cluster0-mjl6h.mongodb.net/test?retryWrites=true&w=majority";
-        await mongoose.connect(url, { useNewUrlParser: true });
+        const url = "mongodb+srv://memet:12345@cluster0-mjl6h.mongodb.net/shop";
+        await mongoose.connect(url, {
+            useNewUrlParser: true,
+            useFindAndModify: false,
+        });
         app.listen(PORT, () => {
             console.log(`Server has been started on ${PORT}.`);
         });

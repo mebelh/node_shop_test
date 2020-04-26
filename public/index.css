@@ -30,3 +30,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.course-edit {
+    margin-bottom: 2rem;
+}
