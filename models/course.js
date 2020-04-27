@@ -13,6 +13,10 @@ const course = new Schema({
         type: String,
         required: true,
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        req: "User",
+    },
 });
 
 module.exports = model("Course", course);

@@ -12,7 +12,10 @@ router.post("/", async (req, res) => {
         title: req.body.title,
         price: req.body.price,
         img: req.body.img,
+        userId: req.user,
     });
+
+    console.log(req.user);
 
     try {
         await course.save();
