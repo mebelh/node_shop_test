@@ -24,6 +24,7 @@ const orderSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    allowedProtoProperties: { type: Boolean },
 });
 
 module.exports = model("Orders", orderSchema);
