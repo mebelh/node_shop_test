@@ -15,7 +15,7 @@ const course = new Schema({
     },
     userId: {
         type: Schema.Types.ObjectId,
-        req: "User",
+        ref: "User",
     },
 });
 

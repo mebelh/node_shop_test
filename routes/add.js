@@ -15,8 +15,6 @@ router.post("/", async (req, res) => {
         userId: req.user,
     });
 
-    console.log(req.user);
-
     try {
         await course.save();
         res.redirect("/courses");
