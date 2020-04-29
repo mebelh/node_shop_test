@@ -14,19 +14,27 @@
                 {{_id}}
               </small>
             </span>
-            <p>
-              Дата
+            <p class="date">
               {{date}}
             </p>
             <p>
               <em>
-                {{user.userId._id}}
+                {{user.userId.name}}
               </em>
               (
               {{{user.userId.email}}}
               )
             </p>
-            <ol></ol>
+            <ol>
+              {{#each courses}}
+                <li>
+                  {{course.title}}
+                  <strong>
+                    {{count}}
+                  </strong>
+                </li>
+              {{/each}}
+            </ol>
             <hr />
             <p>
               Цена:
