@@ -29,6 +29,10 @@
 
     <p><Strong>Цена: <span class="price">{{price}}</span></Strong></p>
 
+    <form action="/orders" method="POST">
+        <button type="submit" class="btn" data-id="{{id}}">Сделать заказ</button>
+        <input type="hidden" value="{{id}}" name="id">
+    </form>
     {{else}}
 
     <p>Корзина пуста</p>

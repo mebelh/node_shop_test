@@ -8,6 +8,7 @@ const homeRoute = require("./routes/home");
 const addRoute = require("./routes/add");
 const coursesRoute = require("./routes/courses");
 const cardRoute = require("./routes/card");
+const ordersRoute = require("./routes/orders");
 const User = require("./models/user");
 
 const hbs = exphdbs.create({
@@ -21,9 +22,8 @@ app.set("views", "views");
 
 app.use(async (req, res, next) => {
     try {
-        const user = await User.findById("5ea967180162580ba43ce829");
+        const user = await User.findById("5ea9dd18fda86c3ad0738182");
         req.user = user;
-
         next();
     } catch (e) {
         console.log(e);
@@ -36,6 +36,7 @@ app.use("/add", addRoute);
 app.use("/", homeRoute);
 app.use("/courses", coursesRoute);
 app.use("/card", cardRoute);
+app.use("/orders", ordersRoute);
 
 const PORT = process.env.PORT || 3000;
 

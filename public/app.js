@@ -40,7 +40,9 @@ if ($card) {
                             card.price
                         );
                     } else {
-                        $card.innerHTML = "<p>Корзина пуста</p>";
+                        $card.innerHTML = `<h2>Корзина</h2>
+                            <hr/>
+                            <p>Корзина пуста</p>`;
                     }
                 });
         }

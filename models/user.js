@@ -42,7 +42,7 @@ userSchema.methods.addToCart = function (course) {
         });
     }
 
-    this.cart = { items };
+    this.cart.items = items;
     return this.save();
 };
 
@@ -58,6 +58,11 @@ userSchema.methods.removeFromCart = function (id) {
     }
 
     this.cart = { items };
+    return this.save();
+};
+
+userSchema.methods.clearCart = function () {
+    this.cart = { items: [] };
     return this.save();
 };
 
