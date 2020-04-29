@@ -57,7 +57,7 @@ userSchema.methods.removeFromCart = function (id) {
         items[idx].count--;
     }
 
-    this.cart.items = items;
+    this.cart = { items };
     return this.save();
 };
 

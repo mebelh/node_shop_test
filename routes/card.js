@@ -5,7 +5,11 @@ const router = Router();
 const mapCartItems = (cart) => {
     // console.log(cart);
 
-    return cart.items.map((c) => ({ ...c.courseId._doc, count: c.count }));
+    return cart.items.map((c) => ({
+        ...c.courseId._doc,
+        count: c.count,
+        id: c.courseId.id,
+    }));
 };
 
 const computePrice = (courses) => {

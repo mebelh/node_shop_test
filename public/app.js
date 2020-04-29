@@ -34,8 +34,6 @@ if ($card) {
                                 `;
                             })
                             .join("");
-                        // console.log($card.querySelector("tbody").innerHTML);
-                        console.log(html);
 
                         $card.querySelector("tbody").innerHTML = html;
                         $card.querySelector(".price").textContent = toCurrency(
