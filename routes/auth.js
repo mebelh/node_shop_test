@@ -1,4 +1,7 @@
 const { Router } = require("express");
+
+const bcrybt = require("bcryptjs");
+
 const router = Router();
 const User = require("../models/user");
 
@@ -15,16 +18,56 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    const user = await User.findById("5ea9dd18fda86c3ad0738182");
-    req.session.user = user;
-    req.session.isAuthentificated = true;
-    req.session.save((err) => {
-        if (err) {
-            throw new Error(err);
+    try {
+        const { email, password } = req.body;
+
+        const candidate = await User.findOne({ email });
+
+        if (candidate) {
+            const areSame = await bcrybt.compare(password, candidate.password);
+
+            if (areSame) {
+                req.session.user = candidate;
+                req.session.isAuthentificated = true;
+                req.session.save((err) => {
+                    if (err) {
+                        throw new Error(err);
+                    } else {
+                        res.redirect("/");
+                    }
+                });
+            } else {
+                res.redirect("/auth/login#login");
+            }
         } else {
-            res.redirect("/");
+            res.redirect("/auth/login#login");
         }
-    });
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+router.post("/register", async (req, res) => {
+    try {
+        const { email, password, repeat, name } = req.body;
+
+        const candidate = await User.findOne({ email });
+        if (candidate) {
+            res.redirect("/auth/register");
+        } else {
+            const hashPassword = await bcrybt.hash(password, 10);
+            const user = new User({
+                email,
+                name,
+                password: hashPassword,
+                cart: { items: [] },
+            });
+            await user.save();
+            res.redirect("/auth/login");
+        }
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 module.exports = router;

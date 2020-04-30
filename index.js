@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const csrf = require("csurf");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
@@ -15,6 +16,7 @@ const MONGODB_URI = "mongodb+srv://memet:12345@cluster0-mjl6h.mongodb.net/shop";
 
 const User = require("./models/user");
 const varMiddleware = require("./middleware/variables");
+const userMiddleware = require("./middleware/user");
 
 const app = express();
 
@@ -51,7 +53,10 @@ app.use(
         store,
     })
 );
+app.use(csrf());
+
 app.use(varMiddleware);
+app.use(userMiddleware);
 
 app.use("/add", addRoute);
 app.use("/", homeRoute);
