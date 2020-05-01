@@ -20,6 +20,11 @@
           {{loginError}}
         </p>
       {{/if}}
+      {{#if registerOk}}
+        <p class="alertOk">
+          {{registerOk}}
+        </p>
+      {{/if}}
       <h2>
         Войти в аккаунт
       </h2>
@@ -66,7 +71,7 @@
     </div>
     <div id="register" class="col s6 offset-s3">
       {{#if registerError}}
-        <p>
+        <p class="alert">
           {{registerError}}
         </p>
       {{/if}}
@@ -121,13 +126,13 @@
         </div>
         <div class="input-field">
           <input
-            name="confirm"
-            id="confirm"
+            name="repeat"
+            id="repeat"
             type="password"
             class="validate"
             required
           />
-          <label for="confirm">
+          <label for="repeat">
             Повторите пароль
           </label>
           <span

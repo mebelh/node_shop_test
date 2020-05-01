@@ -39,11 +39,21 @@
     padding-top: 1rem;
 }
 
-.alert {
+.alert,
+.alertOk {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: .5rem 1rem .5rem 1rem;
+
+    text-align: center;
+}
+
+.alert {
     background-color: rgba(255, 0, 0, .1);
     color: red;
-    text-align: center;
+}
+
+.alertOk {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: green;
 }

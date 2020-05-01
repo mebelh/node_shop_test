@@ -11,6 +11,7 @@ router.get("/login", (req, res) => {
         isLogin: true,
         loginError: req.flash("loginError"),
         registerError: req.flash("registerError"),
+        registerOk: req.flash("registerOk"),
     });
 });
 router.get("/logout", (req, res) => {
@@ -63,7 +64,12 @@ router.post("/register", async (req, res) => {
                 "registerError",
                 " Аккаунт с таким email уже существует!"
             );
-            res.redirect("/auth/login");
+            res.redirect("/auth/login#register");
+        } else if (password !== repeat) {
+            console.log(password + "  ||| " + repeat);
+
+            req.flash("registerError", "Пароли не совпадают!");
+            res.redirect("/auth/login#register");
         } else {
             const hashPassword = await bcrybt.hash(password, 10);
             const user = new User({
@@ -72,7 +78,12 @@ router.post("/register", async (req, res) => {
                 password: hashPassword,
                 cart: { items: [] },
             });
+            req.flash(
+                "registerOk",
+                "Регистрация прошла успешно, войдите в учетную запись."
+            );
             await user.save();
+
             res.redirect("/auth/login");
         }
     } catch (e) {
