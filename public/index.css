@@ -38,3 +38,12 @@
 .auth {
     padding-top: 1rem;
 }
+
+.alert {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: .5rem 1rem .5rem 1rem;
+    background-color: rgba(255, 0, 0, .1);
+    color: red;
+    text-align: center;
+}
